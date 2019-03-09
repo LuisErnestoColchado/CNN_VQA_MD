@@ -11,9 +11,12 @@ from utils import *
 
 fileTrain = "data/train/All_QA_Pairs_train.txt"
 fileValidation = "data/validation/All_QA_Pairs_val.txt"
-sentencesTrain =  readFile(fileTrain)
-sentencesVal = readFile(fileValidation)
+trainX, trainY = readFile(fileTrain)
+valX, valY = readFile(fileValidation)
 
-modelW2VTrain = wordEmbeddings(sentencesTrain)
-modelW2VVal = wordEmbeddings(sentencesVal)
+modelW2VTrainX = wordEmbeddings(trainX)
+modelW2VTrainY = wordEmbeddings(trainY)
+modelW2VValX = wordEmbeddings(valX)
+modelW2VValY = wordEmbeddings(valY)
+
 
