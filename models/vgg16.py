@@ -70,7 +70,7 @@ class Vgg16:
 
         self.fc7 = self.fc_layer(self.relu6, "fc7")
         self.relu7 = tf.nn.relu(self.fc7)
-
+        
         self.fc8 = self.fc_layer(self.relu7, "fc8")
 
         self.prob = tf.nn.softmax(self.fc8, name="prob")
@@ -110,7 +110,7 @@ class Vgg16:
             # Fully connected layer. Note that the '+' operation automatically
             # broadcasts the biases.
             fc = tf.nn.bias_add(tf.matmul(x, weights), biases)
-
+ 
             return fc
 
     def get_conv_filter(self, name):
