@@ -1,4 +1,10 @@
-def biLstm(x, weights, biases):
+import tensorflow as tf
+import numpy as np
+
+keep_prob = 1.0
+initializer = tf.random_uniform_initializer(-1, 1)
+
+def biLstm(x, weights, biases,num_layers,num_units):
     outputs = x
     #track through the layers
     for layer in range(num_layers):
@@ -7,10 +13,11 @@ def biLstm(x, weights, biases):
             #forward cells
             cell_fw = tf.contrib.rnn.LSTMCell(num_units,initializer=initializer)
             cell_fw = tf.contrib.rnn.DropoutWrapper(cell_fw, input_keep_prob = keep_prob)
+            
             #backward cells
             cell_bw = tf.contrib.rnn.LSTMCell(num_units,initializer=initializer)
             cell_bw = tf.contrib.rnn.DropoutWrapper(cell_bw, input_keep_prob = keep_prob)
-
+                
             (output_fw, output_bw), last_state = tf.nn.bidirectional_dynamic_rnn(cell_fw,cell_bw, outputs,dtype=tf.float32)
             state = last_state
 
